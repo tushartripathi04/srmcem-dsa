@@ -1,28 +1,20 @@
-// binary tree order pre traversal 
-
 class Solution {
-public:
-    vector<int> preorderTraversal(TreeNode* root) {
-        vector<int> ans;
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> ans = new ArrayList<>();
 
-        if (root == NULL) {
-            return ans;
-        }
+        if (root == null) return ans;
 
-        stack<TreeNode*> st;
-        st.push(root);
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
 
-        while (!st.empty()) {
-            TreeNode* node = st.top();
-            st.pop();
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+            ans.add(node.val);
 
-            ans.push_back(node->val);
-
-            if (node->right) st.push(node->right);
-            if (node->left) st.push(node->left);
+            if (node.right != null) stack.push(node.right);
+            if (node.left != null) stack.push(node.left);
         }
 
         return ans;
     }
-};
-
+}
